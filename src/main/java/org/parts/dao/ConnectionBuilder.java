@@ -12,9 +12,9 @@ import java.sql.SQLException;
 public class ConnectionBuilder {
     public static Connection getH2Connection() {
         try {
-            String url = "jdbc:h2:./h2db";
-            String name = "tully";
-            String pass = "tully";
+            String url = "jdbc:h2:~/Downloads\\test_\\testDevCandidate1\\TestDB";
+            String name = "";
+            String pass = "";
 
             JdbcDataSource ds = new JdbcDataSource();
             ds.setURL(url);
