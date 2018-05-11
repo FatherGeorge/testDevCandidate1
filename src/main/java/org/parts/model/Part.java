@@ -1,15 +1,9 @@
 package org.parts.model;
 
-
-/*import javax.persistence.*;*/
 import java.util.Date;
 
-/*@Entity*/
-//@Table(name = "parts")
 public class Part {
 
-/*    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private long id;
     private String partNumber;
     private String partName;
