@@ -76,6 +76,13 @@
       <artifactId>h2</artifactId>
       <version>${com.h2database.h2.version}</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
+<!--    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1.0.0.redhat-6</version>
+    </dependency>-->
   </dependencies>
 
   <build>
