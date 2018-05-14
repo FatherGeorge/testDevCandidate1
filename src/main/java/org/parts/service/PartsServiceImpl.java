@@ -23,7 +23,8 @@ public class PartsServiceImpl implements PartsService {
     public List<Part> getArrangedParts(Dto dto) {
         try {
             if (dto.isFiltered()) {
-                filteredParts = FilterService.applyFilter(dao.getAllParts(), dto);
+                //filteredParts = FilterService.applyFilter(dao.getAllParts(), dto);
+                dao.getFilteredParts(dto);
                 return filteredParts;
             } else if (dto.isSorted()) {
                 return sortService.applySort(filteredParts, dto.getSortField());

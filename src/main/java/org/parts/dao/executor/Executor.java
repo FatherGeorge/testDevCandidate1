@@ -1,9 +1,9 @@
 package org.parts.dao.executor;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.parts.service.Dto;
+
+import java.sql.*;
+import java.util.List;
 
 public class Executor {
     private final Connection connection;
@@ -18,9 +18,7 @@ public class Executor {
         stmt.close();
     }
 
-    public <T> T execQuery(String query,
-                           ResultHandler<T> handler)
-            throws SQLException {
+    public <T> T execQuery(String query, ResultHandler<T> handler) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.execute(query);
         ResultSet result = stmt.getResultSet();
@@ -31,4 +29,16 @@ public class Executor {
         return value;
     }
 
+    public <T> T execQuery(Dto dto, ResultHandler<T> handler) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement("");
+        stmt.setString(1, "");
+        //TODO
+
+        ResultSet result = stmt.executeQuery();
+        T value = handler.handle(result);
+        result.close();
+        stmt.close();
+
+        return value;
+    }
 }
