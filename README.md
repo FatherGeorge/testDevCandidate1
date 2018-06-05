@@ -5,7 +5,7 @@ simple webserver with servlets and JDBC
 
 Типичные ошибки java-разработчиков в тестовом задании
 
-navff
+navff.livejournal.com
 November 7th, 2017
 Невнимательное чтение задачи. Например, использование ORM, когда написано, что его использовать нельзя;
 Глушение исключений через e.printStackTrace();
