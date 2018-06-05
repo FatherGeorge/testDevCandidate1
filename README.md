@@ -1,6 +1,7 @@
 # testDevCandidate1
 simple webserver with servlets and JDBC
 
+Файл TestDB.mv.db базы h2 для используется для тестов. Нужно положить его в домашнюю директорию в соответствии с connection string "jdbc:h2:~/TestDB".
 
 Типичные ошибки java-разработчиков в тестовом задании
 
