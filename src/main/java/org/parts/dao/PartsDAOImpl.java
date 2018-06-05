@@ -42,7 +42,16 @@ public class PartsDAOImpl implements PartsDAO {
         return executor.execQuery(dto, new ResultHandler<List<Part>>() {
             @Override
             public List<Part> handle(ResultSet resultSet) throws SQLException {
-                return null;
+                List<Part> parts = new ArrayList<>();
+                while (resultSet.next()) {
+                    parts.add(new Part(resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getInt(5),
+                            resultSet.getDate(6),
+                            resultSet.getDate(7)));
+                }
+                return parts;
             }
         });
     }
