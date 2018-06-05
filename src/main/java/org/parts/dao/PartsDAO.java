@@ -7,6 +7,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface PartsDAO {
-    List<Part> getAllParts()  throws SQLException;
-    List<Part> getFilteredParts(Dto dto) throws SQLException;
+    List<Part> getParts(Dto dto) throws SQLException;
 }

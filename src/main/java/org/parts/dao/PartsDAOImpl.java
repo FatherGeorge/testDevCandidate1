@@ -19,33 +19,14 @@ public class PartsDAOImpl implements PartsDAO {
     }
 
     @Override
-    public List<Part> getAllParts() throws SQLException {
-        return executor.execQuery("select * from Parts", new ResultHandler<List<Part>>() {
-            @Override
-            public List<Part> handle(ResultSet resultSet) throws SQLException {
-                List<Part> parts = new ArrayList<>();
-                while (resultSet.next()) {
-                    parts.add(new Part(resultSet.getString(2),
-                                       resultSet.getString(3),
-                                       resultSet.getString(4),
-                                       resultSet.getInt(5),
-                                       resultSet.getDate(6),
-                                       resultSet.getDate(7)));
-                }
-                return parts;
-            }
-        });
-    }
-
-    @Override
-    public List<Part> getFilteredParts(Dto dto) throws SQLException {
+    public List<Part> getParts(Dto dto) throws SQLException {
         return executor.execQuery(dto, new ResultHandler<List<Part>>() {
             @Override
             public List<Part> handle(ResultSet resultSet) throws SQLException {
                 List<Part> parts = new ArrayList<>();
                 while (resultSet.next()) {
-                    parts.add(new Part(resultSet.getString(2),
-                            resultSet.getString(3),
+                    parts.add(new Part(resultSet.getString(3),
+                            resultSet.getString(2),
                             resultSet.getString(4),
                             resultSet.getInt(5),
                             resultSet.getDate(6),

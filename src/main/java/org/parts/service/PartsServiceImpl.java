@@ -3,7 +3,6 @@ package org.parts.service;
 import org.parts.dao.PartsDAO;
 import org.parts.dao.PartsDAOImpl;
 import org.parts.model.Part;
-import org.parts.utils.FilterService;
 import org.parts.utils.SortService;
 
 import java.sql.SQLException;
@@ -23,13 +22,12 @@ public class PartsServiceImpl implements PartsService {
     public List<Part> getArrangedParts(Dto dto) {
         try {
             if (dto.isFiltered()) {
-                //filteredParts = FilterService.applyFilter(dao.getAllParts(), dto);
-                filteredParts = dao.getFilteredParts(dto);
+                filteredParts = dao.getParts(dto);
                 return filteredParts;
             } else if (dto.isSorted()) {
                 return sortService.applySort(filteredParts, dto.getSortField());
             }
-            filteredParts = dao.getAllParts();
+            filteredParts = dao.getParts(dto);
         } catch (SQLException e) {
             e.printStackTrace();
         }

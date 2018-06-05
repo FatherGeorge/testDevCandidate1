@@ -4,30 +4,12 @@ import org.parts.service.Dto;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Executor {
     private final Connection connection;
 
     public Executor(Connection connection) {
         this.connection = connection;
-    }
-
-    public void execUpdate(String update) throws SQLException {
-        Statement stmt = connection.createStatement();
-        stmt.execute(update);
-        stmt.close();
-    }
-
-    public <T> T execQuery(String query, ResultHandler<T> handler) throws SQLException {
-        Statement stmt = connection.createStatement();
-        stmt.execute(query);
-        ResultSet result = stmt.getResultSet();
-        T value = handler.handle(result);
-        result.close();
-        stmt.close();
-
-        return value;
     }
 
     public <T> T execQuery(Dto dto, ResultHandler<T> handler) throws SQLException {
@@ -42,7 +24,7 @@ public class Executor {
             queryParams.add(dto.getPartName());
         }
         if (dto.getVendor() != null && !dto.getVendor().isEmpty()) {
-            sqlQuery += " AND vendor = LIKE ? ";
+            sqlQuery += " AND vendor LIKE ? ";
             queryParams.add(dto.getVendor());
         }
         if (dto.getQty() != null) {
@@ -65,11 +47,11 @@ public class Executor {
             sqlQuery += " AND received <= ? ";
             queryParams.add(dto.getReceivedBefore());
         }
-        //TODO
+
         PreparedStatement stmt = connection.prepareStatement(sqlQuery);
         int index = 1;
         for (Object param : queryParams) {
-            stmt.setObject(1, param);
+            stmt.setObject(index++, param);
         }
 
         ResultSet result = stmt.executeQuery();
